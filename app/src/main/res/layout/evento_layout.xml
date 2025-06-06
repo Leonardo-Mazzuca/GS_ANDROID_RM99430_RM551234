@@ -1,0 +1,69 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="40dp"
+    android:orientation="horizontal"
+    android:gravity="center_vertical">
+
+    <TextView
+        android:id="@+id/nomeLocalView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        tools:text="Nome"
+        android:paddingStart="16dp"
+        />
+
+    <TextView
+        android:id="@+id/tipoEventoView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        tools:text="Tipo"
+        android:paddingStart="16dp" />
+
+    <TextView
+        android:id="@+id/grauImpactoView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        tools:text="Impacto"
+        android:paddingStart="16dp" />
+
+    <TextView
+        android:id="@+id/dataEventoView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        tools:text="Data"
+        android:paddingStart="16dp" />
+
+    <TextView
+        android:id="@+id/numEstimadoView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        tools:text="Qtd"
+        android:paddingStart="16dp" />
+
+    <ImageButton
+        android:id="@+id/imageButton"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:src="@drawable/baseline_delete_24"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:contentDescription="Remover"
+        android:padding="8dp"
+        android:layout_marginEnd="8dp" />
+
+</LinearLayout>
