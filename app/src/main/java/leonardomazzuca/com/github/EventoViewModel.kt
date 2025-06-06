@@ -18,7 +18,7 @@ class EventoViewModel(application: Application) : AndroidViewModel(application) 
         val database = Room.databaseBuilder(
             getApplication(),
             EventoDatabase::class.java,
-            "items_database"
+            "eventos_database"
         ).build()
 
 

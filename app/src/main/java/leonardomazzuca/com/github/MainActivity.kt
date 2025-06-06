@@ -1,7 +1,12 @@
 package leonardomazzuca.com.github
 
 import EventoViewModel
+import android.content.Intent
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
+import android.widget.ArrayAdapter
+import android.widget.AutoCompleteTextView
 import android.widget.Button
 import android.widget.EditText
 
@@ -14,6 +19,9 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var viewModel: EventoViewModel
 
+    private val tiposEvento = listOf("Chuva", "Onda de calor", "Chuva intensa")
+    private val grausImpacto = listOf("Leve", "Moderado", "Severo")
+
     fun validarCampoVazio(editText: EditText, mensagemErro: String): Boolean {
         return if (editText.text.toString().isBlank()) {
             editText.error = mensagemErro
@@ -21,6 +29,22 @@ class MainActivity : AppCompatActivity() {
         } else {
             editText.error = null
             false
+        }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_main, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.menu_button -> {
+                val intent = Intent(this, RmActivity::class.java)
+                startActivity(intent)
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
         }
     }
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -41,17 +65,41 @@ class MainActivity : AppCompatActivity() {
 
         val button = findViewById<Button>(R.id.button)
         val nomeLocalText = findViewById<EditText>(R.id.nomeDoLocal)
-        val tipoEventoText = findViewById<EditText>(R.id.tipoEvento)
-        val grauImpactoText = findViewById<EditText>(R.id.grauImpacto)
         val dataEvento = findViewById<EditText>(R.id.dataEvento)
         val numPessoasText = findViewById<EditText>(R.id.numPessoas)
+
+        val tiposEventoAdapter = ArrayAdapter(
+            this,
+            android.R.layout.simple_dropdown_item_1line,
+            tiposEvento
+        )
+
+        val grausImpactoAdapter = ArrayAdapter(
+            this,
+            android.R.layout.simple_dropdown_item_1line,
+            grausImpacto
+        )
+
+        val tipoEventoInput = findViewById<AutoCompleteTextView>(R.id.tipoEvento)
+        tipoEventoInput.setAdapter(tiposEventoAdapter)
+
+        val grauImpactoInput = findViewById<AutoCompleteTextView>(R.id.grauImpacto)
+        grauImpactoInput.setAdapter(grausImpactoAdapter)
+
+        tipoEventoInput.setOnClickListener {
+            tipoEventoInput.showDropDown()
+        }
+
+        grauImpactoInput.setOnClickListener {
+            grauImpactoInput.showDropDown()
+        }
 
         button.setOnClickListener {
 
             val temErro = listOf(
                 validarCampoVazio(nomeLocalText, "O nome do local é obrigatório!"),
-                validarCampoVazio(tipoEventoText, "O tipo de evento é obrigatório!"),
-                validarCampoVazio(grauImpactoText, "O grau de impacto é obrigatório!"),
+                validarCampoVazio(tipoEventoInput, "O tipo de evento é obrigatório!"),
+                validarCampoVazio(grauImpactoInput, "O grau de impacto é obrigatório!"),
                 validarCampoVazio(dataEvento, "A data de evento é obrigatória!"),
                 validarCampoVazio(numPessoasText, "O número de pessoas estimado é obrigatório!")
             ).any { it }
@@ -60,14 +108,18 @@ class MainActivity : AppCompatActivity() {
 
             val newItem = EventoExtremoModel(
                 nomeDoLocal = nomeLocalText.text.toString(),
-                tipoEvento = tipoEventoText.text.toString(),
-                grauImpacto = grauImpactoText.text.toString(),
+                tipoEvento =  tipoEventoInput.text.toString(),
+                grauImpacto = grauImpactoInput.text.toString(),
                 dataEvento = dataEvento.text.toString(),
                 numeroEstimadoPessoas = numPessoasText.text.toString().toIntOrNull() ?: 0
             )
 
             viewModel.addItem(newItem)
             nomeLocalText.text.clear()
+            tipoEventoInput.text.clear()
+            grauImpactoInput.text.clear()
+            dataEvento.text.clear()
+            numPessoasText.text.clear()
 
         }
 

@@ -25,19 +25,26 @@
         android:hint="Nome do local"
         android:inputType="text"/>
 
-    <EditText
+    <AutoCompleteTextView
         android:id="@+id/tipoEvento"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Tipo do evento"
-        android:inputType="text"/>
+        android:inputType="none"
+        android:focusable="false"
+        android:dropDownHeight="wrap_content"
+        android:drawableEnd="@drawable/baseline_keyboard_arrow_down_24" />
 
-    <EditText
+    <AutoCompleteTextView
         android:id="@+id/grauImpacto"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Grau do impacto"
-        android:inputType="text"/>
+        android:focusable="false"
+        android:inputType="none"
+        android:dropDownHeight="wrap_content"
+        android:drawableEnd="@drawable/baseline_keyboard_arrow_down_24" />
+
 
     <EditText
         android:id="@+id/dataEvento"
