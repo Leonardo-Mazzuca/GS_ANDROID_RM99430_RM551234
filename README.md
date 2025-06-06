@@ -20,6 +20,10 @@
 
 ![Screenshot (5)](https://github.com/user-attachments/assets/37e6ba18-f53d-4c97-a51a-325e4a3499ab)
 
+## Removendo Item
+
+![Screenshot (7)](https://github.com/user-attachments/assets/deea2881-7330-4b8d-82f1-682a419e398f)
+
 ## Pagina de RMS
 
 ![Screenshot (6)](https://github.com/user-attachments/assets/3fd5d2e1-2038-4709-ba3f-4285deb9097e)
